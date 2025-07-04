@@ -1,8 +1,3 @@
-/**
- * Challenge: Create the About page. This page will be
- * accessible at the `/about` route. (e.g. printforge.com/about)
- */
-
 export default function Home() {
   return (
     <main>
