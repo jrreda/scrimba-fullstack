@@ -4,6 +4,7 @@ import type { ModelDetailPageProps } from "@/app/types"
 import { getModelById } from "@/app/lib/models"
 import Image from "next/image"
 import placeholderImg from "@/public/placeholder.svg"
+import Link from "next/link"
 
 export default async function ModelDetailPage({ params }: ModelDetailPageProps) {
   const { id } = await params
@@ -41,13 +42,15 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
 
           <h1 className="mb-6 text-4xl font-bold">{model.name}</h1>
 
-          <Pill
-            className="mb-6 w-fit"
-            // role="status"
-            aria-label="Category"
-          >
-            {model.category}
-          </Pill>
+          <Link href={`/3d-models/categories/${model.category}`} className="mb-6">
+            <Pill
+              className="w-fit"
+              // role="status"
+              aria-label="Category"
+            >
+              {model.category}
+            </Pill>
+          </Link>
 
           <div className="mb-6 prose prose-lg max-w-none">
             <p className="leading-relaxed text-gray-700">

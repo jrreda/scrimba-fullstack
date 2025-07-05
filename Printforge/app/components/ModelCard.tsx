@@ -32,7 +32,9 @@ export default function ModelCard({ model }: ModelCardProps) {
             {model.description}
           </p>
           <div className="mt-2">
-            <Pill>{model.category}</Pill>
+            <Link href={`/3d-models/categories/${model.category}`} className="text-sm text-gray-600">
+              <Pill>{model.category}</Pill>
+            </Link>
           </div>
           <div className="flex items-center mt-2 text-gray-600" aria-label={`${model.likes} likes`}>
             <FaRegHeart className="w-5 h-5 mr-1 text-gray-400" aria-hidden="true" />

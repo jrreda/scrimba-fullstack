@@ -10,3 +10,12 @@ h5,
 h6 {
     font-family: var(--font-montserrat-alternates);
 }
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
