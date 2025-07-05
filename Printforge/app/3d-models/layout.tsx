@@ -11,10 +11,12 @@ export default function ModelsLayout({ children }: { children: ReactNode }) {
       <nav
         className="sticky top-0 z-10 flex gap-6 p-4 overflow-x-auto bg-white no-scrollbar lg:fixed lg:top-36 lg:left-0 lg:w-56 lg:h-auto lg:flex-col lg:px-8"
       >
+        <NavLink href="/3d-models" variant="border">All</NavLink>
         {categories.map(category => (
           <NavLink
             key={category.slug}
             href={`/3d-models/categories/${category.slug}`}
+            variant="border"
           >
             {category.displayName}
           </NavLink>
