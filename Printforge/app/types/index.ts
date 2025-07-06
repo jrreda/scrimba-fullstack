@@ -20,6 +20,10 @@ export type CategoriesData = {
   categories: Category[]
 }
 
+export type GetModelsParams = {
+  category?: string
+}
+
 // Page Types
 export type RootLayoutProps = Readonly<{
   children: React.ReactNode;
@@ -40,6 +44,11 @@ export type CategoryPageProps = {
 // Components Types
 export type ModelCardProps = {
   model: Model
+}
+
+export type ModelsGridProps = {
+  title: string
+  models: Model[]
 }
 
 export type PillProps = {
