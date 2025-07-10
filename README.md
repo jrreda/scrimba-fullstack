@@ -5,6 +5,7 @@ Scrimbe Fullstack Career Path projects
 ## Projects
 
 -   [Printforge](./Printforge/) (next.js)
+-   [Assembly Endgame](./Assembly%20Endgame/) (Typescript)
 
 ---
 
