@@ -6,6 +6,7 @@ Scrimbe Fullstack Career Path projects
 
 -   [Printforge](./Printforge/) (next.js)
 -   [Assembly Endgame](./Assembly%20Endgame/) (Typescript)
+-   [Meme Generator](./Meme%20Generator/) (vitest)
 
 ---
 
