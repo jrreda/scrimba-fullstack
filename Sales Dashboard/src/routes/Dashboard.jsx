@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import supabase from "./supabase-client";
-import BarChart from "./BarChart";
-import Form from "./Form";
+import supabase from "../supabase-client";
+import BarChart from "../components/BarChart";
+import Form from "../components/Form";
 
 function Dashboard() {
   const [metrics, setMetrics] = useState([]);
