@@ -26,7 +26,7 @@ function Dashboard() {
     setMetrics(data);
     return data;
   } catch (error) {
-    console.error(error);
+    console.error("Error getting session:", error.message);
     throw error;
   }
 }

@@ -7,7 +7,7 @@ Scrimbe Fullstack Career Path projects
 -   [Printforge](./Printforge/) (next.js)
 -   [Assembly Endgame](./Assembly%20Endgame/) (Typescript)
 -   [Meme Generator](./Meme%20Generator/) (vitest)
--   [Sales Dashboard](./Sales%20Dashboard/) (supabase)
+-   [Sales Dashboard](./Sales%20Dashboard/) (supabase, react-router-dom, Authentication)
 
 ---
 

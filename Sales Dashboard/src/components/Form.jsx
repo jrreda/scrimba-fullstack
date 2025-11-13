@@ -10,6 +10,7 @@ function Form({ metrics }) {
         value: formData.get('value'),
       };
       console.log(newDeal);
+
       //Async operation
       const { error } = await supabase
         .from('sales_deals')
@@ -21,7 +22,7 @@ function Form({ metrics }) {
         return new Error('Failed to add deal: ' + error.message);
       }
 
-      return null;
+      return null; //Success state
     },
     null // Initial state
   );
