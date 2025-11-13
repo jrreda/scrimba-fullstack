@@ -1,6 +1,6 @@
-import { useActionState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router';
+import { useActionState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate, Link } from "react-router-dom";
 
 function Signin() {
   const { signInUser } = useAuth();
@@ -10,8 +10,8 @@ function Signin() {
     async (previousState, formData) => {
       //Action logic
       const userData = {
-        email: formData.get('email'),
-        password: formData.get('password'),
+        email: formData.get("email"),
+        password: formData.get("password"),
       };
 
       //Async operation
@@ -27,7 +27,7 @@ function Signin() {
       }
       if (success && data?.session) {
         //Navigate to /dashboard
-        navigate('/dashboard');
+        navigate("/dashboard");
         return null;
       }
 
@@ -52,10 +52,10 @@ function Signin() {
 
           <h2 className="form-title">Sign in</h2>
           <p>
-            Don't have an account yet?{' '}
-            {/*<Link className="form-link">*/}
+            Don't have an account yet?{" "}
+            <Link to="/signup" className="form-link">
               Sign up
-           {/*</Link>*/}
+            </Link>
           </p>
 
           <label htmlFor="email">Email</label>
@@ -67,7 +67,7 @@ function Signin() {
             placeholder=""
             required
             aria-required="true"
-            aria-invalid={error ? 'true' : 'false'}
+            aria-invalid={error ? "true" : "false"}
             aria-describedby="email-description"
             disabled={isPending}
           />
@@ -81,7 +81,7 @@ function Signin() {
             placeholder=""
             required
             aria-required="true"
-            aria-invalid={error ? 'true' : 'false'}
+            aria-invalid={error ? "true" : "false"}
             aria-describedby="password-description"
             disabled={isPending}
           />
@@ -92,12 +92,12 @@ function Signin() {
             disabled={isPending}
             aria-busy={isPending}
           >
-            {isPending ? 'Signing in...' : 'Sign In'}
+            {isPending ? "Signing in..." : "Sign In"}
           </button>
-          
+
           {/* Error message */}
           {error && (
-            <div id='sign' role="alert" className="sign-form-error-message">
+            <div id="sign" role="alert" className="sign-form-error-message">
               {error.message}
             </div>
           )}
@@ -105,6 +105,6 @@ function Signin() {
       </div>
     </>
   );
-};
+}
 
 export default Signin;

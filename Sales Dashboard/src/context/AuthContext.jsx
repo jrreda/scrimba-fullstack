@@ -21,6 +21,7 @@ export const AuthContextProvider = ({ children }) => {
     }
     getInitialSession();
 
+    //Auth state change listener
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       console.log("Session changed:", session);
@@ -49,8 +50,25 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const signOut = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+
+      if (error) {
+        console.error('Supabase sign-out error:', error.message);
+        return { success: false, error: error.message };
+      }
+
+      console.log('Supabase sign-out success');
+      return { success: true };
+    } catch (error) {
+      console.error('Unexpected error during sign-out:', error.message);
+      return { success: false, error: 'An unexpected error occurred. Please try again.' };
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ session, signInUser }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ session, signInUser, signOut }}>{children}</AuthContext.Provider>
   );
 };
 
