@@ -3,28 +3,31 @@ import { useAuth } from '../context/AuthContext';
 import { useActionState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 const Signup = () => {
   const { signUpNewUser } = useAuth();
   const navigate = useNavigate();
 
   const [error, submitAction, isPending] = useActionState(
     async (previousState, formData) => {
-      //Action logic
       const email = formData.get('email');
       const password = formData.get('password');
+      const name = formData.get('name');
+      const accountType = formData.get('account-type');
 
-      // Async operation
-      const { success, data, error: signUpError } = await signUpNewUser(email, password);
+      const {
+        success,
+        data,
+        error: signUpError,
+      } = await signUpNewUser(email, password, name, accountType);
 
       if (signUpError) {
         return new Error(signUpError);
       }
+
       if (success && data?.session) {
-        navigate("/dashboard");
+        navigate('/dashboard');
         return null;
       }
-
       return null;
     },
     null
@@ -52,6 +55,20 @@ const Signup = () => {
             </Link>
           </p>
 
+          <label htmlFor="name">Name</label>
+          <input
+            className="form-input"
+            type="text"
+            name="name"
+            id="name"
+            placeholder=""
+            required
+            aria-required="true"
+            aria-invalid={error ? 'true' : 'false'}
+            aria-describedby={error ? 'signup-error' : undefined}
+            disabled={isPending}
+          />
+
           <label htmlFor="email">Email</label>
           <input
             className="form-input"
@@ -61,8 +78,8 @@ const Signup = () => {
             placeholder=""
             required
             aria-required="true"
-            aria-invalid={error ? "true" : "false"}
-            aria-describedby={error ? "signup-error" : ""}
+            aria-invalid={error ? 'true' : 'false'}
+            aria-describedby={error ? 'signup-error' : undefined}
             disabled={isPending}
           />
 
@@ -75,10 +92,33 @@ const Signup = () => {
             placeholder=""
             required
             aria-required="true"
-            aria-invalid={error ? "true" : "false"}
-            aria-describedby={error ? "signup-error" : ""}
+            aria-invalid={error ? 'true' : 'false'}
+            aria-describedby={error ? 'signup-error' : undefined}
             disabled={isPending}
           />
+
+          <fieldset
+            className="form-fieldset"
+            aria-required="true"
+            aria-label="Select your role"
+          >
+            <legend>Select your role</legend>
+            <div className="radio-group">
+              <label>
+                <input
+                  type="radio"
+                  name="account-type"
+                  value="admin"
+                  required
+                />{' '}
+                Admin
+              </label>
+              <label>
+                <input type="radio" name="account-type" value="rep" required />{' '}
+                Sales Rep
+              </label>
+            </div>
+          </fieldset>
 
           <button
             type="submit"
@@ -86,12 +126,11 @@ const Signup = () => {
             disabled={isPending}
             aria-busy={isPending}
           >
-            {isPending ? "Signing up..." : "Sign Up"}
+            {isPending ? 'Signing up...' : 'Sign Up'}
           </button>
 
-          {/* Error message */}
           {error && (
-            <div id="signup-error" role="alert" className="sign-form-error-message" aria-live="assertive">
+            <div id="signup-error" role="alert" className="sign-form-error-message">
               {error.message}
             </div>
           )}

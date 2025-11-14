@@ -7,29 +7,30 @@ function Dashboard() {
   const [metrics, setMetrics] = useState([]);
 
   async function fetchMetrics() {
-  // const response = await supabase
-  //   .from("sales_deals")
-  //   .select("name,value")
-  //   .order("value", { ascending: false })
-  //   .limit(1);
+    // const response = await supabase
+    //   .from("sales_deals")
+    //   .select("name,value")
+    //   .order("value", { ascending: false })
+    //   .limit(1);
 
-  try {
-    const { data, error } = await supabase
-    .from('sales_deals')
-    .select(`name, total:value.sum()`) 
-    
-    if (error) {
-      throw error;
+    try {
+      const { data, error } = await supabase.from("sales_deals").select(
+        `
+          value.sum(),
+          ...user_profiles!inner(
+            name
+          )
+        `
+      );
+      if (error) {
+        throw error;
+      }
+      // console.log("Fetched metrics:", data);
+      setMetrics(data);
+    } catch (error) {
+      console.error("Error fetching metrics:", error.message);
     }
-
-    console.log(data);
-    setMetrics(data);
-    return data;
-  } catch (error) {
-    console.error("Error getting session:", error.message);
-    throw error;
   }
-}
 
   useEffect(() => {
     const getMetrics = async () => {
@@ -38,19 +39,20 @@ function Dashboard() {
     getMetrics();
 
     const channel = supabase
-      .channel('deal-changes')
+      .channel("deal-changes")
       .on(
-        'postgres_changes',
-        { 
-          event: '*', 
-          schema: 'public', 
-          table: 'sales_deals' 
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "sales_deals",
         },
-        payload => {
+        (payload) => {
           console.log(payload);
           // It's okay to re-fetch metrics on every change as it's a small dataset
           fetchMetrics();
-        })
+        }
+      )
       .subscribe();
 
     return () => {
@@ -63,7 +65,7 @@ function Dashboard() {
       <div className="chart-container">
         <BarChart metrics={metrics} />
       </div>
-      <Form metrics={metrics} />
+      <Form />
     </div>
   );
 }
