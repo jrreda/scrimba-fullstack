@@ -38,15 +38,18 @@ export const AuthContextProvider = ({ children }) => {
       });
 
       if (error) {
-        console.error('Supabase sign-in error:', error.message);
+        console.error("Supabase sign-in error:", error.message);
         return { success: false, error: error.message };
       }
 
-      console.log('Supabase sign-in success:', data);
+      console.log("Supabase sign-in success:", data);
       return { success: true, data };
     } catch (error) {
-      console.error('Unexpected error during sign-in:', error.message);
-      return { success: false, error: 'An unexpected error occurred. Please try again.' };
+      console.error("Unexpected error during sign-in:", error.message);
+      return {
+        success: false,
+        error: "An unexpected error occurred. Please try again.",
+      };
     }
   };
 
@@ -55,20 +58,48 @@ export const AuthContextProvider = ({ children }) => {
       const { error } = await supabase.auth.signOut();
 
       if (error) {
-        console.error('Supabase sign-out error:', error.message);
+        console.error("Supabase sign-out error:", error.message);
         return { success: false, error: error.message };
       }
 
-      console.log('Supabase sign-out success');
+      console.log("Supabase sign-out success");
       return { success: true };
     } catch (error) {
-      console.error('Unexpected error during sign-out:', error.message);
-      return { success: false, error: 'An unexpected error occurred. Please try again.' };
+      console.error("Unexpected error during sign-out:", error.message);
+      return {
+        success: false,
+        error: "An unexpected error occurred. Please try again.",
+      };
+    }
+  };
+
+  const signUpNewUser = async (email, password) => {
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: email.toLowerCase(),
+        password: password,
+      });
+      if (error) {
+        console.error("Supabase sign-up error:", error.message);
+        return { success: false, error: error.message };
+      }
+      console.log("Supabase sign-up success:", data);
+      return { success: true, data };
+    } catch (error) {
+      console.error("Unexpected error during sign-up:", error.message);
+      return {
+        success: false,
+        error: "An unexpected error occurred. Please try again.",
+      };
     }
   };
 
   return (
-    <AuthContext.Provider value={{ session, signInUser, signOut }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider
+      value={{ session, signInUser, signOut, signUpNewUser }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 };
 

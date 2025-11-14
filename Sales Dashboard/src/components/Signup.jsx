@@ -1,39 +1,33 @@
-import { useActionState } from "react";
-import { useAuth } from "../context/AuthContext";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { useActionState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Signin() {
-  const { signInUser } = useAuth();
+
+const Signup = () => {
+  const { signUpNewUser } = useAuth();
   const navigate = useNavigate();
 
   const [error, submitAction, isPending] = useActionState(
     async (previousState, formData) => {
       //Action logic
-      const userData = {
-        email: formData.get("email"),
-        password: formData.get("password"),
-      };
+      const email = formData.get('email');
+      const password = formData.get('password');
 
-      //Async operation
-      const {
-        success,
-        data,
-        error: signInError,
-      } = await signInUser(userData.email, userData.password);
+      // Async operation
+      const { success, data, error: signUpError } = await signUpNewUser(email, password);
 
-      //Return error state
-      if (signInError) {
-        return new Error(signInError);
+      if (signUpError) {
+        return new Error(signUpError);
       }
       if (success && data?.session) {
-        //Navigate to /dashboard
         navigate("/dashboard");
         return null;
       }
 
-      return null; //Success state
+      return null;
     },
-    null //Initial state
+    null
   );
 
   return (
@@ -42,19 +36,19 @@ function Signin() {
       <div className="sign-form-container">
         <form
           action={submitAction}
-          aria-label="Sign in form"
+          aria-label="Sign up form"
           aria-describedby="form-description"
         >
           <div id="form-description" className="sr-only">
-            Use this form to sign in to your account. Enter your email and
+            Use this form to create a new account. Enter your email and
             password.
           </div>
 
-          <h2 className="form-title">Sign in</h2>
+          <h2 className="form-title">Sign up today!</h2>
           <p>
-            Don't have an account yet?{" "}
-            <Link to="/signup" className="form-link">
-              Sign up
+            Already have an account?{' '}
+            <Link className="form-link" to="/">
+              Sign in
             </Link>
           </p>
 
@@ -68,7 +62,7 @@ function Signin() {
             required
             aria-required="true"
             aria-invalid={error ? "true" : "false"}
-            aria-describedby={error ? "signin-error" : ""}
+            aria-describedby={error ? "signup-error" : ""}
             disabled={isPending}
           />
 
@@ -82,7 +76,7 @@ function Signin() {
             required
             aria-required="true"
             aria-invalid={error ? "true" : "false"}
-            aria-describedby={error ? "signin-error" : ""}
+            aria-describedby={error ? "signup-error" : ""}
             disabled={isPending}
           />
 
@@ -92,12 +86,12 @@ function Signin() {
             disabled={isPending}
             aria-busy={isPending}
           >
-            {isPending ? "Signing in..." : "Sign In"}
+            {isPending ? "Signing up..." : "Sign Up"}
           </button>
 
           {/* Error message */}
           {error && (
-            <div id="signin-error" role="alert" className="sign-form-error-message" aria-live="assertive">
+            <div id="signup-error" role="alert" className="sign-form-error-message" aria-live="assertive">
               {error.message}
             </div>
           )}
@@ -105,6 +99,6 @@ function Signin() {
       </div>
     </>
   );
-}
+};
 
-export default Signin;
+export default Signup;
