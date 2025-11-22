@@ -8,6 +8,7 @@ Scrimbe Fullstack Career Path projects
 -   [Assembly Endgame](./Assembly%20Endgame/) (Typescript)
 -   [Meme Generator](./Meme%20Generator/) (vitest)
 -   [Sales Dashboard](./Sales%20Dashboard/) (supabase, react-router-dom, Authentication)
+-   [Dodgy Dave's Stock Predictions](./Stock%20Assistant/) (JS, Polygon.io API ,Openai API)
 
 ---
 
