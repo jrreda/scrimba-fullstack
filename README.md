@@ -10,6 +10,7 @@ Scrimbe Fullstack Career Path projects
 -   [Sales Dashboard](./Sales%20Dashboard/) (supabase, react-router-dom, Authentication)
 -   [Dodgy Dave's Stock Predictions](./Stock%20Assistant/) (JS, Polygon.io API ,Openai API)
 -   [Spiral Sounds](./Spiral%20Sounds/) (Express)
+-   [AI Agent](./AI%20agent/) (ReAct, Open API)
 
 ---
 
