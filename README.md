@@ -9,6 +9,7 @@ Scrimbe Fullstack Career Path projects
 -   [Meme Generator](./Meme%20Generator/) (vitest)
 -   [Sales Dashboard](./Sales%20Dashboard/) (supabase, react-router-dom, Authentication)
 -   [Dodgy Dave's Stock Predictions](./Stock%20Assistant/) (JS, Polygon.io API ,Openai API)
+-   [Spiral Sounds](./Spiral%20Sounds/) (Express)
 
 ---
 
