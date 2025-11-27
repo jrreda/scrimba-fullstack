@@ -12,6 +12,7 @@ Scrimbe Fullstack & AI Career Paths projects
 -   [Spiral Sounds](./Spiral%20Sounds/) (Express)
 -   [AI Agent](./AI%20agent/) (ReAct, Open API)
 -   [Object Detection](./Object%20Detection/) (YOLO)
+-   [Ollama in the browser](./Ollama/) (ollama, express)
 
 ---
 
