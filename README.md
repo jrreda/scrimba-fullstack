@@ -1,6 +1,6 @@
-# Scrimba Fullstack
+# Scrimba Fullstack & AI
 
-Scrimbe Fullstack Career Path projects
+Scrimbe Fullstack & AI Career Paths projects
 
 ## Projects
 
@@ -11,6 +11,7 @@ Scrimbe Fullstack Career Path projects
 -   [Dodgy Dave's Stock Predictions](./Stock%20Assistant/) (JS, Polygon.io API ,Openai API)
 -   [Spiral Sounds](./Spiral%20Sounds/) (Express)
 -   [AI Agent](./AI%20agent/) (ReAct, Open API)
+-   [Object Detection](./Object%20Detection/) (YOLO)
 
 ---
 
